@@ -16,6 +16,8 @@ configurations {
 
 repositories {
 	mavenCentral()
+	maven { url 'https://repo.spring.io/milestone' }
+	maven { url 'https://repo.spring.io/snapshot' }
 }
 
 dependencies {
@@ -38,4 +40,22 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+}
+
+task stage(dependsOn: ['build', 'clean'])
+build.mustRunAfter clean
+
+
+task copyToLib(type: Copy) {
+    into "$buildDir/libs"
+    from(configurations.compile)
+}
+
+stage.dependsOn(copyToLib)
+
+gradle.taskGraph.whenReady {
+  taskGraph ->
+    if (taskGraph.hasTask(stage)) {
+      test.enabled = false
+    }
 }
