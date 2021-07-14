@@ -3,8 +3,8 @@
 } */
 
 body {
-    /* background-image: url("../image/header.jpg"); */
-    background-image: url("../image/header01.jpg");
+    background-image: url("../image/header.jpg");
+    /* background-image: url("../image/header01.jpg"); */
     /* 背景画像を繰り返し表示しません。 */
     background-repeat: no-repeat;
     /* 背景画像のサイズを調整のため正方形に整形します。 */
